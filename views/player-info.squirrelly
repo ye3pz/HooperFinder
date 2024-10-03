@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HooperFinder</title>
+    <link href="/exStyles.css" rel="stylesheet" type="text/css">
+    <script src="/BBScript.js"> </script>
+    
+    <link  rel="icon" href="data:," >
+</head>
+<body>
+
+    <h1>
+        <img src="https://img.freepik.com/free-vector/basketball-outline-flat-glyph_78370-2087.jpg?w=996&t=st=1707947233~exp=1707947833~hmac=ebfe49f49d3f2ec8ddbc227edecf68ba74e74a6de5eda4b03a6a551d0a467544" class="headerImageLeft">
+        <img src="https://img.freepik.com/free-vector/basketball-outline-flat-glyph_78370-2087.jpg?w=996&t=st=1707947233~exp=1707947833~hmac=ebfe49f49d3f2ec8ddbc227edecf68ba74e74a6de5eda4b03a6a551d0a467544" class="headerImageRight">
+        HooperFinder
+    </h1>
+    <div id="navlist">
+<a href="#">Players</a>
+<a href="#">Teams</a>
+<a href="#">Recent Games</a>
+<a href="#">Seasons</a>
+<a href="#">Advanced Stats</a>
+  
+        <!-- search bar right align -->
+        <div class="search">
+            <form action='/api/search' method="post" target="_blank">
+                 <!-- sends a request to app.post in backend, and backend will render results-->
+                <label for="playerInput">search:</label>
+                <input type="text" id="playerInput"  placeholder="Enter Player Name" name="playerInput" autocomplete="off">
+                <span id="search_result" ></span> 
+                 <input type="submit" value="Submit"  class="fa fa-search"  style="font-size: 18px;">
+                 
+            
+                <div id="playerInfo"></div>
+            </form>
+        </div>
+    </div>
+   
+
+    <div id="table"> 
+        <table id="tables">
+             
+                
+                {{@foreach(it.data) => index, val}}
+            <tr class="rows"  id="player rows"> 
+                <img class="player_image" src='/player_images/{{val.first_name}}-{{val.last_name}}.jpg' alt="player_photo for {{val.first_name}} {{val.last_name}}">
+                <p style='white-space:pre;'> </p> 
+                First Name:{{val.first_name}} 
+                <div class="horizontalgap" style="width:30px"></div>
+
+                Last Name:{{val.last_name}}
+                <div class="horizontalgap" style="width:30px"></div>
+
+                
+                Weight:{{val.weight}}
+               <div class="horizontalgap" style="width:30px"></div>
+
+                  
+                Height:{{val.height}}
+                <div class="horizontalgap" style="width:30px"></div>
+            </tr>
+            <p style='white-space:pre;'> </p> 
+                {{/foreach}}
+           
+            
+        
+       
+        <div id="map"></div>
+
+        <!-- prettier-ignore -->
+        </table>
+
+    </div>
+
+</body>
+
+</html>
+<script>
+        function load_data(query = '')
+    {
+            console.log("function query :" + query)
+        fetch('/get_data?search_query='+query+'').then(function(response){
+
+            return response.json();
+
+        }).then(function(responseData){
+
+            var html = '<ul class="list-group">';
+
+            if(responseData.length > 0)
+            {
+                for(var count = 0; count < responseData.length; count++)
+                {
+                    var regular_expression = new RegExp('('+query+')', 'gi');
+                    console.log("inside for loop query: " + query)
+                    html += '<a href="#" id="suggestions" style="color:black; font-size:35px;" onclick="get_text(this)">'+ (responseData[count].first_name + " " + responseData[count].last_name).replace(regular_expression, '<span>$1</span>')+'</a>'+ '<p> </p>';
+                }
+            }
+            else
+            {
+                html += '<a href="#" style="color:black;">No Data Found</a>';
+            }
+
+            html += '</ul>';
+           
+
+            document.getElementById('search_result').innerHTML = html; 
+
+        });
+    }
+
+    var search_element = document.getElementById("playerInput");
+    console.log("search element  " +search_element)
+
+    search_element.onkeyup = function(){
+            
+        var query = String(search_element.value);
+        console.log("query  " + query)
+       console.log( document.getElementById("playerInput").value)
+        load_data(query);
+
+    };
+    
+
+    function get_text(event)
+    {
+        var playerName = event.textContent;
+
+        console.log("get text player name : " + playerName);
+
+        document.getElementById('playerInput').value = playerName;
+
+       document.getElementById('search_result').innerHTML = ''; 
+        
+    }
+
+</script>

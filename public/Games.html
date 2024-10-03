@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HooperFinder</title>
+    <link href="exStyles.css" rel="stylesheet" type="text/css">
+    <script src="BBScript.js"> </script>
+    
+    <link  rel="icon" href="data:," >
+</head>
+<body>
+
+    <h1>
+        <img src="https://img.freepik.com/free-vector/basketball-outline-flat-glyph_78370-2087.jpg?w=996&t=st=1707947233~exp=1707947833~hmac=ebfe49f49d3f2ec8ddbc227edecf68ba74e74a6de5eda4b03a6a551d0a467544" class="headerImageLeft">
+        <img src="https://img.freepik.com/free-vector/basketball-outline-flat-glyph_78370-2087.jpg?w=996&t=st=1707947233~exp=1707947833~hmac=ebfe49f49d3f2ec8ddbc227edecf68ba74e74a6de5eda4b03a6a551d0a467544" class="headerImageRight">
+        HooperFinder
+    </h1>
+    <div id="navlist">
+<a href="hoops.html">Players</a>
+<a href="Teams.html">Teams</a>
+<a href="#" id="navGame">Recent Games</a>
+<a href="#">Seasons</a>
+<a href="#">Advanced Stats</a>
+  
+        <!-- search bar right align -->
+        <div class="search">
+            <form action='/api/search' method="post" target="_blank">
+                <label for="playerInput">search:</label>
+                <input type="text" id="playerInput" placeholder="Enter Player Name" name="playerInput">
+                 <input type="submit" value="Submit"  class="fa fa-search"  style="font-size: 18px;">
+                  
+            
+                <div id="playerInfo"></div>
+            </form>
+        </div>
+    </div>
+    <div id="table"> 
+        <table id="tables">
+        <tr>
+            <td> 
+                Recent Games
+            </td>
+            
+            <td>
+                
+            </td>
+        </tr>
+
+        <div id="map"></div>
+
+        <!-- prettier-ignore -->
+
+        <tr>
+            <td>
+
+            </td>
+            <td>
+
+            </td>
+        </tr>
+        
+        </table>
+
+    </div>
+
+    div>
+    <span id="hame-pageviews-count"></span>
+    <h4>Pageviews : {{it.pageViews}}</h4>
+  </div>
+  <div>
+    <span id="game-visits-count"></span>
+    <h4>Visits</h4>
+  </div>
+
+</body>
+</html>

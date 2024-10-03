@@ -1,0 +1,184 @@
+body {
+font-family: 'Times New Roman', Times, serif;
+font-size: 2px;
+padding-top: 50px;
+max-width:fit-content;
+}
+
+h1 {
+    font-size: 40px;
+    text-align: center;
+    background-color: white;
+}
+
+h2 {
+   position: fixed;
+    margin-top: 80PX;
+}
+
+.player_image {
+    height:250px;
+    width: 200px;
+    right: 60px;
+
+}
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+ 
+/* styling navlist */
+#navlist {
+    background-color: black;
+    position: absolute;
+    width: 100%;
+}
+ 
+/* styling navlist anchor element */
+#navlist a {
+    float: left;
+    display: block;
+    color: #f2f2f2;
+    text-align: center;
+    padding: 12px;
+    text-decoration: none;
+    font-size: 15px;
+}
+ 
+.navlist-right {
+    float: right;
+}
+ 
+/* hover effect of navlist anchor element */
+#navlist a:hover {
+    background-color: white; 
+    color: black;
+}
+ 
+/* styling search bar */
+.search input[type=text] {
+    width: 300px;
+    height: 25px;
+    border-radius: 25px;
+    border: none;
+}
+ 
+.search {
+    float: right;
+    margin: 7px;
+}
+ 
+.search button {
+    background-color: black;
+    color: #f2f2f2;
+    float: right;
+    padding: 5px 10px;
+    margin-right: 16px;
+    font-size: 12px;
+    border: none;
+    cursor: pointer;
+}
+.Enter {
+    margin-top: 150px;
+    float: left;
+    padding-top: 600px;
+}
+ 
+/* styling logo and tag */
+.content {
+    padding-top: 40px;
+}
+ 
+.content h1 {
+    color: green;
+}
+.headerImageLeft {
+  width: 15%;
+  float:  left;
+  padding-bottom:0%;
+  margin-top: -110px;
+    position:relative;
+}
+.headerImageRight {
+    width: 15%;
+    float:  right;
+    margin-top: -110px;
+    position:relative;
+  }
+   
+  #table {
+    border-color: black;
+    border: solid;
+    width: 70%;
+    height: fit-content;
+    margin-top: 400px;
+    height:30%;
+    font-size: 30px;
+    border-color: white;
+    padding-right: 150px;
+    z-index: 1000;
+   
+      }
+
+    .rows {
+        background-color: grey;
+       height: fit-content;
+     
+       padding-right: 150px;
+     
+      
+    }
+    #player-rows {
+
+        width: 1000px;
+       padding-right: 150px;
+    }
+
+    div.horizontalgap {
+        float: left;
+        overflow: hidden;
+        height: 1px;
+        width: 0px;
+      }
+      
+    .cols {
+        background-color: white;
+        width: 350px;
+        height: 250px;
+        
+    }
+
+    #container {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        margin: 2rem;
+        box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+        padding: 2px 16px;
+      }
+      #container > div {
+        padding: 1rem;
+        margin: 1rem;
+        width: 7rem;
+      }
+      #container span {
+        font-size: 2rem;
+        font-weight: bold;
+      }
+      #container h4 {
+        font-size: 1rem;
+        font-weight: normal;
+        margin: 0;
+        margin-top: 1rem;
+      }
+
+     
+      .list-group {
+        position: absolute;
+        color: black;
+        width:300px;
+        border-style: solid;
+      }
