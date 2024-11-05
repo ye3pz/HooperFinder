@@ -262,15 +262,13 @@ async function apiCall(input) {
  const apiUrl = "https://api.balldontlie.io/v1/players?search=" + playerName;
  //API with query parameter attached to the end
  var players = []
- try {
+ 
   if(!process.env.BBALL_API_KEY){
     throw new ERROR("NO API_key entered")
   }
  const response = await fetch(apiUrl,options)
  const json =  await response.json();
-} catch (error) {
-  console.log(error);
- }
+
  for (var player in json.data)   { 
     // json data is in form of array so we loop through the array
     if(fullName != playerName & lastName == json.data[player].last_name){
@@ -325,7 +323,7 @@ app.post('/api/search', async (req, res) => {
   res.render("player-info",  {data: await logPlayer(playerName) })})
   //rendering data ontp a tempplate
   app.listen(port, () =>{
-    console.log(`app is listening on port: ${port}`)
+    console.log(`app is listening on port: ${process.env.PORT}`)
       })
 
    const local_file = "https://localhost:8080"
