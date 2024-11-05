@@ -45,7 +45,7 @@
                 
                 {{@foreach(it.data) => index, val}}
             <tr class="rows"  id="player rows"> 
-                <img class="player_image" src='/player_images/{{val.first_name}}-{{val.last_name}}.jpg' alt="player_photo for {{val.first_name}} {{val.last_name}}">
+                <img class="player_image" src='../player_images/{{val.first_name}}-{{val.last_name}}.jpg' alt="player_photo for {{val.first_name}} {{val.last_name}}">
                 <p style='white-space:pre;'> </p> 
                 First Name:{{val.first_name}} 
                 <div class="horizontalgap" style="width:30px"></div>
