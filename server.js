@@ -162,14 +162,30 @@ app.get('/get_data', function(request, response, next){
   
   var search_query = request.query.search_query;
 
+  if (search_query.indexOf(" ") > 0) { 
+    var index = search_query.indexOf(" ") 
+    var first = search_query.slice(0, index); // Gets the first name
+    var last = search_query.slice(index + 1);  // Gets the last name
+
+    var sql = `
+    SELECT first_name,last_name FROM players
+    WHERE first_name LIKE '${first}%'
+    AND last_name LIKE '${last}%'
+    LIMIT 10
+    `;
+    }
+    else { 
   var sql = `
   SELECT first_name,last_name FROM players
   WHERE first_name LIKE '%${search_query}%' 
   LIMIT 10
   `;
+    }
 
   db.all(sql, function(error, data){
     //all vallues thar match query
+    console.log(response.json.data)
+    console.log(data)
     return response.json(data);
   });
 
@@ -289,17 +305,19 @@ async function apiCall(input) {
   
     else { 
       sql =  `INSERT INTO players(id,first_name,last_name,height,weight) VALUES(?,?,?,?,?)`;
-      db.run(sql, [json.data[player].id,json.data[player].first_name ,
+      db.all(sql, [json.data[player].id,json.data[player].first_name ,
         json.data[player].last_name,json.data[player].height,json.data[player].weight], (err)=>{
           if (err){
             console.log(err.message)
         }
+  
       }) 
     // caching data into database
-  return (json.data)
+ // return (json.data)
   //returning json data with multiple players
 }
 }
+return (json.data)
 }
 
 
