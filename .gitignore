@@ -130,6 +130,6 @@ dist
 .pnp.*
 
 player_images
-favorites 
+favorites
 build
 config.gypi
