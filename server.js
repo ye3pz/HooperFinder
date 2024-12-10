@@ -8,7 +8,7 @@ const path = require('path');
 path is Node.js native utility module.
 require is Node.js global function that allows you to extract contents from module.exports object inside some file.
 */
-const port = 8080;
+const port = process.env.PORT;
 //port number that server is listening on//
 const cors = require('cors');
 //enabling cors to conect backend and frontend//
@@ -32,12 +32,19 @@ const db = new sqlite3.Database("./test.db", sqlite3.OPEN_READWRITE, (err) => {i
 module.exports = db;
 // creating database amd connecting it
 
-//sql = `CREATE TABLE players(id,first_name,last_name,height,weight)`
-//db.run(sql);
+createTableSql = `CREATE TABLE players (
+id  INTEGER PRIMARY KEY,
+first_name TEXT NOT NULL,
+last_name TEXT NOT NULL,
+height TEXT NOT NULL,
+weight INTEGER NOT NULL,
+UNIQUE(id)
+)`
+//db.run(createTableSql);
+
 
 //Drop Table
 //db.run(`DROP TABLE players`);
-
 //
 
 /*nsert Data 
@@ -80,8 +87,30 @@ app.set("views", "views")
 app.use(cors());
 app.use(express.static('public'))
 app.use('/player_images' ,express.static('player_images'))
+
 app.use(express.static(path.join(__dirname + '/public/exStyles')))
 app.use(express.static(path.join(__dirname + '/publlic/BBScript')))
+app.use('/favorites' ,express.static('favorites'))
+
+app.get('/favorites', (req, res) => {
+  const imageDirectory = path.join(__dirname +'/favorites');
+  fs.readdir(imageDirectory, (err, files) => {
+      if (err) {
+          console.error('Error reading image directory:', err);
+          res.status(500).send('Error reading image directory.');
+      } else {
+          const imageFiles = files.filter(file => {
+              const ext = path.extname(file).toLowerCase();
+              return ext === '.jpg' || ext === '.jpeg' || ext === '.png';
+          });
+          res.json(imageFiles);
+      }
+  });
+});
+
+
+
+
 app.get('', function (req, res, next) {
    /*
    Middleware functions are functions that have access 
@@ -93,10 +122,12 @@ app.get('', function (req, res, next) {
   if (req.url === '/favicon.ico') {
     res.end();
 } 
-
-
-
 // Ends request for favicon without counting
+
+
+
+
+
 
 const json = fs.readFileSync('count.json', 'utf-8');
 const obj = JSON.parse(json);
@@ -290,7 +321,7 @@ async function apiCall(input) {
     if(fullName != playerName & lastName == json.data[player].last_name){
       //in case iser inputs first and last name to look for a specific person
       console.log(json.data[player])
-      sql =  `INSERT INTO players(id,first_name,last_name,height,weight) VALUES(?,?,?,?,?)`;
+      sql =  `INSERT OR IGNORE INTO players(id,first_name,last_name,height,weight) VALUES(?,?,?,?,?)`;
       db.run(sql, [json.data[player].id,json.data[player].first_name ,
         json.data[player].last_name,json.data[player].height,json.data[player].weight], (err)=>{
           if (err){
@@ -304,7 +335,7 @@ async function apiCall(input) {
     }
   
     else { 
-      sql =  `INSERT INTO players(id,first_name,last_name,height,weight) VALUES(?,?,?,?,?)`;
+      sql =  `INSERT OR IGNORE INTO players(id,first_name,last_name,height,weight) VALUES(?,?,?,?,?)`;
       db.all(sql, [json.data[player].id,json.data[player].first_name ,
         json.data[player].last_name,json.data[player].height,json.data[player].weight], (err)=>{
           if (err){
@@ -340,10 +371,8 @@ app.post('/api/search', async (req, res) => {
   
   res.render("player-info",  {data: await logPlayer(playerName) })})
   //rendering data ontp a tempplate
-  app.listen(port, () =>{
-    console.log(`app is listening on port: ${process.env.PORT}`)
-      })
+  const hostname = '127.0.0.1'
 
-   const local_file = "https://localhost:8080"
-   //url local file link since im lazy
-   
+  app.listen(port, hostname, () =>{
+    console.log(`Server running at http://${hostname}:${port}/`)
+      })

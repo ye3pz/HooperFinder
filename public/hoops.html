@@ -3,9 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>HooperFinder</title>
     <link href="exStyles.css" rel="stylesheet" type="text/css">
-    <script src="BBScript.js"> </script>
+    
+    <title >HooperFinder</title>
     
     <link  rel="icon" href="data:," >
 
@@ -14,9 +14,11 @@
 <body >
 
     <h1>
+        <div id="content"></div>
         <img src="https://img.freepik.com/free-vector/basketball-outline-flat-glyph_78370-2087.jpg?w=996&t=st=1707947233~exp=1707947833~hmac=ebfe49f49d3f2ec8ddbc227edecf68ba74e74a6de5eda4b03a6a551d0a467544" class="headerImageLeft">
         <img src="https://img.freepik.com/free-vector/basketball-outline-flat-glyph_78370-2087.jpg?w=996&t=st=1707947233~exp=1707947833~hmac=ebfe49f49d3f2ec8ddbc227edecf68ba74e74a6de5eda4b03a6a551d0a467544" class="headerImageRight">
         HooperFinder
+        <div id="content"></div>
     </h1>
     <div id="navlist">
 <a href="#" id="navPlayer" >Players</a>
@@ -39,10 +41,15 @@
             </form>
         </div>
     </div>
+    <div id="Favorites">THE GREATEST </div>
 
-    <p id="Enter">
-        Enter Name of Player to return player profile
-    </p>
+    <div id="fav_images"> </div>
+
+    
+
+    <div>
+        <img src="https://i.redd.it/1idzpvpk1oia1.jpg" class="quote">  
+    </div>
 
     <div id="table"> 
         <table id="tables">
@@ -73,15 +80,15 @@
 
     </div>
 
-    div>
+    <div>
     <span id="pageviews-count"></span>
-    <h4>Pageviews : {{it.pageViews}}</h4>
+    <h4 class="views">Pageviews : {{it.pageViews}}</h4>
   </div>
   <div>
     <span id="visits-count"></span>
-    <h4>Visits</h4>
+    <h4 class="views">Visits</h4>
   </div>
-
+  <script src="BBScript.js"> </script>
 </body>
 
 </html>

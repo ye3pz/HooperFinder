@@ -1,6 +1,6 @@
 body {
 font-family: 'Times New Roman', Times, serif;
-font-size: 2px;
+font-size: 20px;
 padding-top: 50px;
 max-width:fit-content;
 }
@@ -97,14 +97,50 @@ h2 {
   width: 15%;
   float:  left;
   padding-bottom:0%;
-  margin-top: -110px;
+  margin-top: -84px;
     position:relative;
 }
 .headerImageRight {
     width: 15%;
     float:  right;
-    margin-top: -110px;
+    margin-top: -84px;
     position:relative;
+  }
+
+  .quote {
+    width: 600px;
+    padding-top: 40px;
+    height: 825px;
+    position: absolute;
+    right:0%;
+    float: right;
+  }
+
+  #Favorites {
+    position: absolute;
+    margin-top: 70px;
+    margin-left: 550px;
+    font-size: 25px;
+    font: bold ;
+   
+  }
+
+  #fav_images {
+    position: absolute;
+    margin-top: 120px;
+    margin-left: 550px;
+    width: 100px;
+    height: 500px;  
+   
+
+  }
+  #id {
+    position: absolute;
+    margin-top: 100px;
+    margin-left: 550px;
+    
+   
+
   }
    
   #table {
@@ -181,4 +217,7 @@ h2 {
         color: black;
         width:300px;
         border-style: solid;
+      }
+      .views {
+        display: none;
       }

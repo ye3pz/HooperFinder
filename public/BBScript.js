@@ -70,6 +70,30 @@ function updateCounter(type) {
 
 }
 
+var imageContainer = document.getElementById('fav_images');
+  console.log("First image container " + imageContainer)
+   fetch('/favorites ') // Make a request to server to get image filenames
+       .then(response => response.json())
+       .then(images => {
+           images.forEach(image => {
+              
+               var imgElement = document.createElement('img');
+              
+               imgElement.src = `../favorites/${image}`;
+               
+               imgElement.width = 175
+               
+               imageContainer.appendChild(imgElement);
+               if (document.getElementById('fav_images')){
+                document.getElementById('fav_images').checked = true;
+                console.log("true")
+            }
+               console.log(imageContainer)
+              
+               
+           });
+       });
+
 
 
 
